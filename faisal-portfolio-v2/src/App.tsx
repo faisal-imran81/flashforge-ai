@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import LoadingScreen from './components/LoadingScreen'
 import Background from './components/Background'
+import Nav from './components/Nav'
 
 function App() {
   const [loaded, setLoaded] = useState(false)
@@ -18,14 +19,29 @@ function App() {
           zIndex: 2,
         }}
       >
-        <p style={{
-          color: '#10B981',
-          fontFamily: 'JetBrains Mono, monospace',
-          padding: '2rem',
-          fontSize: '0.875rem',
-        }}>
-          background + loading screen done ✓
-        </p>
+        <Nav />
+        <main>
+          <section
+            id="hero"
+            style={{ minHeight: '100vh', padding: '8rem 2rem 4rem' }}
+          />
+          <section
+            id="projects"
+            style={{ minHeight: '100vh', padding: '8rem 2rem' }}
+          />
+          <section
+            id="stack"
+            style={{ minHeight: '60vh', padding: '8rem 2rem' }}
+          />
+          <section
+            id="experience"
+            style={{ minHeight: '60vh', padding: '8rem 2rem' }}
+          />
+          <section
+            id="contact"
+            style={{ minHeight: '60vh', padding: '8rem 2rem' }}
+          />
+        </main>
       </div>
     </>
   )
