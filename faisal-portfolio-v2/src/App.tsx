@@ -2,6 +2,7 @@ import { useState } from 'react'
 import LoadingScreen from './components/LoadingScreen'
 import Background from './components/Background'
 import Nav from './components/Nav'
+import Hero from './components/sections/Hero'
 
 function App() {
   const [loaded, setLoaded] = useState(false)
@@ -21,26 +22,11 @@ function App() {
       >
         <Nav />
         <main>
-          <section
-            id="hero"
-            style={{ minHeight: '100vh', padding: '8rem 2rem 4rem' }}
-          />
-          <section
-            id="projects"
-            style={{ minHeight: '100vh', padding: '8rem 2rem' }}
-          />
-          <section
-            id="stack"
-            style={{ minHeight: '60vh', padding: '8rem 2rem' }}
-          />
-          <section
-            id="experience"
-            style={{ minHeight: '60vh', padding: '8rem 2rem' }}
-          />
-          <section
-            id="contact"
-            style={{ minHeight: '60vh', padding: '8rem 2rem' }}
-          />
+          <Hero />
+          <section id="projects" style={{ minHeight: '100vh', padding: '8rem 2rem' }} />
+          <section id="stack" style={{ minHeight: '60vh', padding: '8rem 2rem' }} />
+          <section id="experience" style={{ minHeight: '60vh', padding: '8rem 2rem' }} />
+          <section id="contact" style={{ minHeight: '60vh', padding: '8rem 2rem' }} />
         </main>
       </div>
     </>
