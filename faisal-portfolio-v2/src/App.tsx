@@ -1,18 +1,21 @@
 import { useState } from 'react'
 import LoadingScreen from './components/LoadingScreen'
+import Background from './components/Background'
 
 function App() {
   const [loaded, setLoaded] = useState(false)
 
   return (
     <>
+      <Background />
       {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
       <div
         style={{
           opacity: loaded ? 1 : 0,
           transition: 'opacity 0.8s ease',
           minHeight: '100vh',
-          backgroundColor: '#080C0A',
+          position: 'relative',
+          zIndex: 2,
         }}
       >
         <p style={{
@@ -21,7 +24,7 @@ function App() {
           padding: '2rem',
           fontSize: '0.875rem',
         }}>
-          loading screen done ✓
+          background + loading screen done ✓
         </p>
       </div>
     </>

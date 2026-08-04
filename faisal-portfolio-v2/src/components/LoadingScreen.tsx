@@ -20,7 +20,6 @@ const NameReveal = memo(() => (
       lineHeight: 1,
       textAlign: 'center',
       display: 'block',
-      textAlign: 'center',
       whiteSpace: 'nowrap',
     }}
   >
