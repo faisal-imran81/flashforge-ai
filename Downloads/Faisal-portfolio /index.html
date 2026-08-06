@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+      IMPORTANT: this is a Vite SPA, so these tags must stay here as static
+      HTML. Link-preview crawlers (WhatsApp, Facebook, LinkedIn, Discord, X)
+      do NOT execute JavaScript — anything injected at runtime by React is
+      invisible to them. Update the values here, never in a component.
+      All URLs must be absolute for the same reason.
+    -->
+
+    <title>Faisal Imran | Software Engineer</title>
+    <meta name="description" content="Faisal Imran — Software Engineer from Faisalabad, Pakistan. Building production web apps with React, Next.js, TypeScript, Node.js and AI/LLM integrations.">
+    <meta name="author" content="Faisal Imran" />
+    <meta name="theme-color" content="#080b12" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://faisal-imran.vercel.app/" />
+
+    <!--
+      Loaded here rather than via @import in index.css: an @import cannot start
+      until the stylesheet itself has downloaded and parsed, which serialises
+      two round trips before any text can render.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    />
+
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn, Discord, iMessage, Slack) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Faisal Imran" />
+    <meta property="og:url" content="https://faisal-imran.vercel.app/" />
+    <meta property="og:title" content="Faisal Imran | Software Engineer" />
+    <meta property="og:description" content="Software Engineer from Faisalabad, Pakistan. Building production web apps with React, Next.js, TypeScript, Node.js and AI/LLM integrations." />
+    <meta property="og:image" content="https://faisal-imran.vercel.app/og-image.png" />
+    <!-- secure_url is what WhatsApp and older LinkedIn crawlers actually read -->
+    <meta property="og:image:secure_url" content="https://faisal-imran.vercel.app/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Faisal Imran — Software Engineer, Faisalabad, Pakistan" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Faisal Imran | Software Engineer" />
+    <meta name="twitter:description" content="Software Engineer from Faisalabad, Pakistan. Building production web apps with React, Next.js, TypeScript, Node.js and AI/LLM integrations." />
+    <meta name="twitter:image" content="https://faisal-imran.vercel.app/og-image.png" />
+    <meta name="twitter:image:alt" content="Faisal Imran — Software Engineer, Faisalabad, Pakistan" />
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Structured data: enables the rich person/site result in Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Faisal Imran",
+      "url": "https://faisal-imran.vercel.app/",
+      "image": "https://faisal-imran.vercel.app/og-image.png",
+      "jobTitle": "Software Engineer",
+      "description": "Software Engineer from Faisalabad, Pakistan. Building production web apps with React, Next.js, TypeScript, Node.js and AI/LLM integrations.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Faisalabad",
+        "addressCountry": "PK"
+      },
+      "knowsAbout": ["React", "Next.js", "TypeScript", "Node.js", "AI/LLM Integrations"]
+    }
+    </script>
+</head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

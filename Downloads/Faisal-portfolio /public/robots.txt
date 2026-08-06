@@ -1,0 +1,34 @@
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+# Link-preview crawlers. These fetch the page and the OG image directly and
+# never execute JavaScript, so they rely entirely on the static tags in
+# index.html.
+User-agent: WhatsApp
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+User-agent: Slackbot-LinkExpanding
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: https://abdullah-farooq.vercel.app/sitemap.xml
