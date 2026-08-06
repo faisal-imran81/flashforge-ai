@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Code2, Brain, Server, Database, LineChart, Users } from 'lucide-react';
-import avatarDesk from '@/assets/avatar-desk.webp';
+import avatarDesk from '@/assets/avatar-hero.webp';
 
 const WhatIDoSection = () => {
   const ref = useRef(null);
@@ -103,7 +103,7 @@ tags: ["React Native", "Next.js", "FastAPI", "PostgreSQL", "Supabase"],
               transition={{ duration: 0.6, delay: 0.4 + i * 0.15 }}
               className="glass-card-hover p-5 md:p-8"
             >
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-start gap-3 mb-4">
                 <card.icon className="w-5 h-5 text-primary" />
                 <h3 className="font-bold text-base md:text-lg tracking-wide">{card.title}</h3>
               </div>
@@ -131,7 +131,7 @@ tags: ["React Native", "Next.js", "FastAPI", "PostgreSQL", "Supabase"],
               transition={{ duration: 0.6, delay: 0.7 + i * 0.12 }}
               className="glass-card-hover p-5 md:p-6"
             >
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-start gap-3 mb-3">
                 <card.icon className="w-5 h-5 text-primary" />
                 <h3 className="font-bold text-sm tracking-wide">{card.title}</h3>
               </div>
