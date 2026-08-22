@@ -1,6 +1,8 @@
-import { useState, useCallback } from "react"
+import { useState, useCallback, useEffect } from "react"
 import { Flashcard, CardCount } from "@/lib/types"
 import { generateFlashcards } from "@/lib/groq"
+
+const STORAGE_KEY = "flashforge_deck"
 
 interface UseFlashcardsReturn {
   cards: Flashcard[]
@@ -21,6 +23,34 @@ export function useFlashcards(): UseFlashcardsReturn {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
+
+  // Load from localStorage on mount
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY)
+      if (stored) {
+        const parsed = JSON.parse(stored)
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setCards(parsed)
+        }
+      }
+    } catch {
+      // ignore parse errors
+    }
+  }, [])
+
+  // Save to localStorage whenever cards change
+  useEffect(() => {
+    try {
+      if (cards.length > 0) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(cards))
+      } else {
+        localStorage.removeItem(STORAGE_KEY)
+      }
+    } catch {
+      // ignore storage errors
+    }
+  }, [cards])
 
   const knownCount = cards.filter((c) => c.known).length
 
@@ -65,6 +95,11 @@ export function useFlashcards(): UseFlashcardsReturn {
     setCards([])
     setError(null)
     setCurrentIndex(0)
+    try {
+      localStorage.removeItem(STORAGE_KEY)
+    } catch {
+      // ignore
+    }
   }, [])
 
   return {
