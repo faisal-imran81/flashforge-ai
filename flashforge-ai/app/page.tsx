@@ -7,6 +7,9 @@ import ProgressBar from "@/components/ProgressBar"
 import LoadingSpinner from "@/components/LoadingSpinner"
 import ErrorMessage from "@/components/ErrorMessage"
 import EmptyState from "@/components/EmptyState"
+import ThemeToggle from "@/components/ThemeToggle"
+import { useTheme } from "next-themes"
+import { useEffect, useState } from "react"
 
 export default function Home() {
   const {
@@ -23,15 +26,50 @@ export default function Home() {
     reset,
   } = useFlashcards()
 
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const isDark = mounted && theme === "dark"
   const hasCards = cards.length > 0
 
+  const mainStyle: React.CSSProperties = {
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "3rem 1rem",
+    gap: "2.5rem",
+    backgroundColor: isDark ? "#111827" : "#f9fafb",
+    color: isDark ? "#f9fafb" : "#111827",
+    transition: "background-color 0.3s, color 0.3s",
+  }
+
   return (
-    <main className="min-h-screen flex flex-col items-center py-12 px-4 gap-10">
-      <header className="text-center">
-        <h1 className="text-3xl font-bold text-indigo-700 tracking-tight">
+    <main style={mainStyle}>
+      <ThemeToggle />
+
+      <header style={{ textAlign: "center" }}>
+        <h1
+          style={{
+            fontSize: "1.875rem",
+            fontWeight: 700,
+            color: isDark ? "#818cf8" : "#4338ca",
+            letterSpacing: "-0.025em",
+          }}
+        >
           FlashForge AI
         </h1>
-        <p className="text-gray-500 text-sm mt-1">
+        <p
+          style={{
+            color: isDark ? "#9ca3af" : "#6b7280",
+            fontSize: "0.875rem",
+            marginTop: "0.25rem",
+          }}
+        >
           Paste your notes. Get flashcards. Study smarter.
         </p>
       </header>
@@ -40,16 +78,19 @@ export default function Home() {
 
       <section
         aria-label="Flashcard study area"
-        className="w-full flex flex-col items-center gap-6"
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "1.5rem",
+        }}
       >
         {isLoading && <LoadingSpinner />}
-
         {!isLoading && error && (
           <ErrorMessage message={error} onRetry={reset} />
         )}
-
         {!isLoading && !error && !hasCards && <EmptyState />}
-
         {!isLoading && !error && hasCards && (
           <>
             <ProgressBar known={knownCount} total={cards.length} />
@@ -66,7 +107,13 @@ export default function Home() {
         )}
       </section>
 
-      <footer className="text-xs text-gray-400 mt-auto">
+      <footer
+        style={{
+          fontSize: "0.75rem",
+          color: isDark ? "#6b7280" : "#9ca3af",
+          marginTop: "auto",
+        }}
+      >
         Built with Next.js + Groq AI · FlashForge AI
       </footer>
     </main>
