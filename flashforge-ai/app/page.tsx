@@ -18,12 +18,14 @@ export default function Home() {
     error,
     currentIndex,
     knownCount,
+    isShuffled,
     generate,
     markKnown,
     markUnknown,
     goNext,
     goPrev,
     reset,
+    toggleShuffle,
   } = useFlashcards()
 
   const { theme } = useTheme()
@@ -87,13 +89,44 @@ export default function Home() {
         }}
       >
         {isLoading && <LoadingSpinner />}
+
         {!isLoading && error && (
           <ErrorMessage message={error} onRetry={reset} />
         )}
+
         {!isLoading && !error && !hasCards && <EmptyState />}
+
         {!isLoading && !error && hasCards && (
           <>
             <ProgressBar known={knownCount} total={cards.length} />
+
+            {/* Shuffle Toggle */}
+            <button
+              onClick={toggleShuffle}
+              aria-pressed={isShuffled}
+              style={{
+                padding: "0.5rem 1.25rem",
+                borderRadius: "9999px",
+                border: isShuffled
+                  ? "1px solid #6366f1"
+                  : isDark
+                  ? "1px solid #374151"
+                  : "1px solid #e5e7eb",
+                background: isShuffled
+                  ? isDark ? "#312e81" : "#eef2ff"
+                  : "transparent",
+                color: isShuffled
+                  ? isDark ? "#a5b4fc" : "#4338ca"
+                  : isDark ? "#9ca3af" : "#6b7280",
+                fontSize: "0.8rem",
+                fontWeight: 500,
+                cursor: "pointer",
+                transition: "all 0.2s",
+              }}
+            >
+              {isShuffled ? "🔀 Shuffle On" : "🔀 Shuffle Off"}
+            </button>
+
             <FlashcardDeck
               cards={cards}
               currentIndex={currentIndex}
