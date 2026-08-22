@@ -32,31 +32,69 @@ export default function FlashcardItem({
   return (
     <div className="flex flex-col items-center gap-4 w-full max-w-xl mx-auto px-4">
       <div
-        role="button"
-        tabIndex={0}
-        aria-label={flipped ? `Back: ${card.back}` : `Front: ${card.front}. Press Enter to flip.`}
-        onClick={handleFlip}
-        onKeyDown={handleKeyDown}
-        className="w-full min-h-48 cursor-pointer rounded-2xl border-2 border-indigo-100 bg-white shadow-md flex items-center justify-center p-6 text-center transition-all duration-200 hover:shadow-lg hover:border-indigo-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 select-none"
+        className="w-full"
+        style={{ perspective: "1000px" }}
       >
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-indigo-400 mb-3">
-            {flipped ? "Answer" : "Question"}
-          </p>
-          <p className="text-gray-800 text-base font-medium leading-relaxed">
-            {flipped ? card.back : card.front}
-          </p>
-          {!flipped && (
-            <p className="text-xs text-gray-400 mt-4">Click or press Enter to reveal</p>
-          )}
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label={
+            flipped
+              ? `Answer: ${card.back}`
+              : `Question: ${card.front}. Press Enter or Space to flip.`
+          }
+          onClick={handleFlip}
+          onKeyDown={handleKeyDown}
+          className="relative w-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 rounded-2xl"
+          style={{
+            transformStyle: "preserve-3d",
+            transition: "transform 0.55s cubic-bezier(0.4, 0, 0.2, 1)",
+            transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
+            minHeight: "220px",
+          }}
+        >
+          {/* Front */}
+          <div
+            className="absolute inset-0 rounded-2xl border-2 border-indigo-100 bg-white dark:bg-gray-800 dark:border-indigo-900 shadow-md flex flex-col items-center justify-center p-6 text-center"
+            style={{ backfaceVisibility: "hidden" }}
+          >
+            <p className="text-xs font-semibold uppercase tracking-widest text-indigo-400 mb-3">
+              Question
+            </p>
+            <p className="text-gray-800 dark:text-gray-100 text-base font-medium leading-relaxed">
+              {card.front}
+            </p>
+            <p className="text-xs text-gray-400 mt-4">
+              Click or press Enter to reveal
+            </p>
+          </div>
+
+          {/* Back */}
+          <div
+            className="absolute inset-0 rounded-2xl border-2 border-green-100 bg-green-50 dark:bg-gray-800 dark:border-green-900 shadow-md flex flex-col items-center justify-center p-6 text-center"
+            style={{
+              backfaceVisibility: "hidden",
+              transform: "rotateY(180deg)",
+            }}
+          >
+            <p className="text-xs font-semibold uppercase tracking-widest text-green-500 mb-3">
+              Answer
+            </p>
+            <p className="text-gray-800 dark:text-gray-100 text-base font-medium leading-relaxed">
+              {card.back}
+            </p>
+          </div>
         </div>
       </div>
 
       {flipped && (
-        <div className="flex gap-3 w-full">
+        <div
+          className="flex gap-3 w-full"
+          style={{ animation: "fadeIn 0.3s ease" }}
+        >
           <button
             onClick={() => onMarkUnknown(card.id)}
-            className="flex-1 py-2.5 rounded-lg border border-red-300 text-red-600 text-sm font-medium hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-1 transition-colors"
+            className="flex-1 py-2.5 rounded-lg border border-red-300 text-red-600 text-sm font-medium hover:bg-red-50 dark:hover:bg-red-950 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-1 transition-colors"
           >
             Still Learning
           </button>
@@ -68,6 +106,16 @@ export default function FlashcardItem({
           </button>
         </div>
       )}
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(6px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          * { transition: none !important; animation: none !important; }
+        }
+      `}</style>
     </div>
   )
 }
